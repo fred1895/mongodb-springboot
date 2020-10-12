@@ -1,6 +1,7 @@
 package io.github.fred1895.cursomongodb.services;
 
 import io.github.fred1895.cursomongodb.domain.User;
+import io.github.fred1895.cursomongodb.dto.UserDTO;
 import io.github.fred1895.cursomongodb.exception.ObjectNotFoundException;
 import io.github.fred1895.cursomongodb.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,14 @@ public class UserService {
     public User findById(String id) {
         Optional<User> obj = repository.findById(id);
         return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado"));
+    }
+
+    public User insert(User user) {
+        return repository.insert(user);
+    }
+
+    public User fromDTO(UserDTO userDTO) {
+        return new User(userDTO.getId(), userDTO.getName(), userDTO.getEmail());
     }
 
 }
