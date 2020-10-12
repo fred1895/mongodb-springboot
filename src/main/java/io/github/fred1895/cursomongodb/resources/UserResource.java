@@ -1,6 +1,6 @@
 package io.github.fred1895.cursomongodb.resources;
 
-import dto.UserDTO;
+import io.github.fred1895.cursomongodb.dto.UserDTO;
 import io.github.fred1895.cursomongodb.domain.User;
 import io.github.fred1895.cursomongodb.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,4 +1,4 @@
-package dto;
+package io.github.fred1895.cursomongodb.dto;
 
 import io.github.fred1895.cursomongodb.domain.User;
 import lombok.Data;
