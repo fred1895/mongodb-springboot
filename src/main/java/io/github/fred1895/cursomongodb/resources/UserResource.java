@@ -1,5 +1,6 @@
 package io.github.fred1895.cursomongodb.resources;
 
+import io.github.fred1895.cursomongodb.domain.Post;
 import io.github.fred1895.cursomongodb.dto.UserDTO;
 import io.github.fred1895.cursomongodb.domain.User;
 import io.github.fred1895.cursomongodb.services.UserService;
@@ -52,5 +53,11 @@ public class UserResource {
         user.setId(id);
         user = service.update(user);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/{id}/posts")
+    public ResponseEntity<List<Post>> findPosts(@PathVariable String id) {
+        User user = service.findById(id);
+        return ResponseEntity.ok().body(user.getPosts());
     }
 }
