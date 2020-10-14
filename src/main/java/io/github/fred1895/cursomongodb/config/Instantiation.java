@@ -2,6 +2,7 @@ package io.github.fred1895.cursomongodb.config;
 
 import io.github.fred1895.cursomongodb.domain.Post;
 import io.github.fred1895.cursomongodb.domain.User;
+import io.github.fred1895.cursomongodb.dto.AuthorDTO;
 import io.github.fred1895.cursomongodb.repositories.PostRepository;
 import io.github.fred1895.cursomongodb.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,8 +34,8 @@ public class Instantiation implements CommandLineRunner {
         User bob = new User(null, "Bob Grey", "bob@gmail.com");
         userRepository.saveAll(Arrays.asList(maria, alex, bob));
 
-        Post post = new Post(null, dateFormat.parse("20/10/2020"), "Partiu viagem", "A viagem vai ser muito boa", maria);
-        Post post2 = new Post(null, dateFormat.parse("21/10/2020"), "Partiu estudo", "O estudo vai ser muito bom", alex);
+        Post post = new Post(null, dateFormat.parse("20/10/2020"), "Partiu viagem", "A viagem vai ser muito boa", new AuthorDTO(maria));
+        Post post2 = new Post(null, dateFormat.parse("21/10/2020"), "Partiu estudo", "O estudo vai ser muito bom", new AuthorDTO(bob));
         postRepository.saveAll(Arrays.asList(post, post2));
 
     }
