@@ -3,6 +3,7 @@ package io.github.fred1895.cursomongodb.config;
 import io.github.fred1895.cursomongodb.domain.Post;
 import io.github.fred1895.cursomongodb.domain.User;
 import io.github.fred1895.cursomongodb.dto.AuthorDTO;
+import io.github.fred1895.cursomongodb.dto.CommentDTO;
 import io.github.fred1895.cursomongodb.repositories.PostRepository;
 import io.github.fred1895.cursomongodb.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +37,13 @@ public class Instantiation implements CommandLineRunner {
 
         Post post = new Post(null, dateFormat.parse("20/10/2020"), "Partiu viagem", "A viagem vai ser muito boa", new AuthorDTO(maria));
         Post post2 = new Post(null, dateFormat.parse("21/10/2020"), "Partiu estudo", "O estudo vai ser muito bom", new AuthorDTO(bob));
+
+        CommentDTO commentDTO = new CommentDTO("Boa viagem brother", dateFormat.parse("22/10/2020"), new AuthorDTO(alex));
+        CommentDTO commentDTO1 = new CommentDTO("Bom estudo parceiro", dateFormat.parse("21/10/2020"), new AuthorDTO(maria));
+
+        post.getComments().addAll(Arrays.asList(commentDTO));
+        post2.getComments().addAll(Arrays.asList(commentDTO1));
+
         postRepository.saveAll(Arrays.asList(post, post2));
 
         maria.getPosts().addAll(Arrays.asList(post, post2));
