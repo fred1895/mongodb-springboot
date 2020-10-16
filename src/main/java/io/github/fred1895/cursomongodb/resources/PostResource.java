@@ -1,13 +1,13 @@
 package io.github.fred1895.cursomongodb.resources;
 
 import io.github.fred1895.cursomongodb.domain.Post;
+import io.github.fred1895.cursomongodb.resources.util.URL;
 import io.github.fred1895.cursomongodb.services.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/posts")
@@ -23,4 +23,11 @@ public class PostResource {
 
     }
 
+    @GetMapping("/titlesearch")
+    public ResponseEntity<List<Post>> findByTitle(@RequestParam(value = "text", defaultValue = "") String text) {
+        text = URL.decodeParam(text);
+        List<Post> postList = service.findByTitle(text);
+        return ResponseEntity.ok().body(postList);
+
+    }
 }
