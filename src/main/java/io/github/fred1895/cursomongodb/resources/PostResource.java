@@ -20,7 +20,6 @@ public class PostResource {
     public ResponseEntity<Post> findById(@PathVariable String id) {
         Post post = service.findById(id);
         return ResponseEntity.ok().body(post);
-
     }
 
     @GetMapping("/titlesearch")
@@ -28,6 +27,5 @@ public class PostResource {
         text = URL.decodeParam(text);
         List<Post> postList = service.findByTitle(text);
         return ResponseEntity.ok().body(postList);
-
     }
 }
